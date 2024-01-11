@@ -102,13 +102,16 @@ function displayUserProfile(userProfile) {
 }
 
 function displayH2() {
-    const latestReposH2 = document.createElement('h2');
-    latestReposH2.textContent = 'Latest Repos';
-    latestReposH2.classList.add('latest-repos');
+    let latestReposH2 = document.querySelector('.latest-repos');
+    if (!latestReposH2) {
+        latestReposH2 = document.createElement('h2');
+        latestReposH2.textContent = 'Latest Repos';
+        latestReposH2.classList.add('latest-repos');
 
-    const repoList = document.querySelector('#repo-list');
-    if (repoList) {
-        repoList.before(latestReposH2);
+        const repoList = document.querySelector('#repo-list');
+        if (repoList) {
+            repoList.before(latestReposH2);
+        }
     }
 }
 
@@ -162,6 +165,8 @@ function displayContributionsGraph(username) {
 }
 
 async function fetchUserProfile(username) {
+    showSpinner();
+    try {
     const response = await fetch(`https://api.github.com/users/${username}`);
     const data = await response.json();
 
@@ -181,19 +186,31 @@ async function fetchUserProfile(username) {
     };
 
     return userProfile;
+    } catch (error) {
+        console.error('Error fetching user profile', error);
+    } finally {
+        hideSpinner();
+    }
 }
 
 async function fetchUserRepos(username) {
-    const response = await fetch(`https://api.github.com/users/${username}/repos`);
-    const repoData = await response.json();
+    showSpinner();
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        const repoData = await response.json();
 
-    const repos = repoData.map(repo => ({
-        name: repo.name,
-        stars: repo.stargazers_count,
-        watchers: repo.watchers_count,
-        forks: repo.forks_count
-    }));
-    return repos;
+        const repos = repoData.map(repo => ({
+            name: repo.name,
+            stars: repo.stargazers_count,
+            watchers: repo.watchers_count,
+            forks: repo.forks_count
+        }));
+        return repos;
+    } catch (error) {
+        console.error('Error fetching user repos', error);
+    } finally {
+        hideSpinner();
+    }
 }
 
 function loadSavedData() {
@@ -206,6 +223,18 @@ function loadSavedData() {
         displayContributionsGraph(userProfile.login);
         displayH2();
         displayUserRepos(userRepos);
+    }
+}
+
+function showSpinner() {
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+    document.body.appendChild(spinner);
+}
+function hideSpinner() {
+    const spinner = document.querySelector('.spinner');
+    if (spinner) {
+        document.body.removeChild(spinner);
     }
 }
 
