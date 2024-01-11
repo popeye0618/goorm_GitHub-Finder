@@ -132,8 +132,20 @@
     border-bottom: none;
 }
 
+#graph-container {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .latest-repos {
-    display: none;
     margin-left: 5px;
     margin-top: 15px;
     margin-bottom: 15px;

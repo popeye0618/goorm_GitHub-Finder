@@ -11,6 +11,8 @@ inputField.addEventListener('keypress', async (event) => {
                 localStorage.setItem('userProfile', JSON.stringify(userProfile));
                 localStorage.setItem('userRepos', JSON.stringify(userRepos));
                 displayUserProfile(userProfile);
+                displayContributionsGraph(userProfile.login);
+                displayH2();
                 displayUserRepos(userRepos);
                 document.querySelector('.profile-container').style.display = 'flex';
                 document.querySelector('.latest-repos').style.display = 'block';
@@ -99,10 +101,23 @@ function displayUserProfile(userProfile) {
     })
 }
 
+function displayH2() {
+    const latestReposH2 = document.createElement('h2');
+    latestReposH2.textContent = 'Latest Repos';
+    latestReposH2.classList.add('latest-repos');
+
+    const repoList = document.querySelector('#repo-list');
+    if (repoList) {
+        repoList.before(latestReposH2);
+    }
+}
+
 
 function displayUserRepos(userRepos) {
     const repoList = document.querySelector('#repo-list');
     repoList.innerHTML = '';
+    
+
     userRepos.forEach(repo => {
         const repoDiv = document.createElement('div');
         repoDiv.classList.add('repo-card');
@@ -134,12 +149,25 @@ function displayUserRepos(userRepos) {
     
 }
 
+function displayContributionsGraph(username) {
+    const contributionGraph = document.createElement('img');
+    contributionGraph.src = `https://ghchart.rshah.org/${username}`
+    contributionGraph.alt = 'Github Contributions Graph'
+
+    const graphContainer = document.getElementById('graph-container');
+    if (graphContainer) {
+        graphContainer.innerHTML = '';
+        graphContainer.appendChild(contributionGraph);
+    }
+}
+
 async function fetchUserProfile(username) {
     const response = await fetch(`https://api.github.com/users/${username}`);
     const data = await response.json();
 
     const userProfile = {
         name: data.name,
+        login: data.login,
         url: data.html_url,
         avatarUrl: data.avatar_url,
         publicRepos: data.public_repos,
@@ -175,6 +203,8 @@ function loadSavedData() {
         userProfile = JSON.parse(savedUserProfile);
         userRepos = JSON.parse(savedUserRepos);
         displayUserProfile(userProfile);
+        displayContributionsGraph(userProfile.login);
+        displayH2();
         displayUserRepos(userRepos);
     }
 }
