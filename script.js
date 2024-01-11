@@ -125,9 +125,11 @@ function displayUserRepos(userRepos) {
         const repoDiv = document.createElement('div');
         repoDiv.classList.add('repo-card');
 
-        const repoP = document.createElement('p');
-        repoP.textContent = repo.name;
-        repoP.classList.add('repo-name');
+        const repoa = document.createElement('a');
+        repoa.textContent = repo.name;
+        repoa.href = repo.url;
+        repoa.target = '_blank';
+        repoa.classList.add('repo-name');
 
         const repoStatus = document.createElement('div');
         repoStatus.classList.add('repo-status');
@@ -144,7 +146,7 @@ function displayUserRepos(userRepos) {
         repoForks.textContent = `Forks: ${repo.forks}`;
         repoForks.classList.add('repo-forks', 'small-container');
 
-        repoStatus.append(repoP, repoStars, repoWatchers, repoForks);
+        repoStatus.append(repoa, repoStars, repoWatchers, repoForks);
         repoDiv.append(repoStatus);
         repoList.append(repoDiv);
         
@@ -201,6 +203,7 @@ async function fetchUserRepos(username) {
 
         const repos = repoData.map(repo => ({
             name: repo.name,
+            url: repo.html_url,
             stars: repo.stargazers_count,
             watchers: repo.watchers_count,
             forks: repo.forks_count
