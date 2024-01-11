@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="title-bar">
+            <p>GitHub Finder</p>
+        </div>
+    </header>
+    <main>
+        <div class="search-container">
+            <h2>Search GitHub Users</h2>
+            <span>
+                Enter a username to fetch a user profile and repos
+            </span>
+            <input type="text" placeholder="Username" id="username-input">
+        </div>
+        <!-- js로 만들어서 새로고침해도 유지되게 만들기 -->
+        <div class="profile-container">
+            
+        </div>
+        <h2 class="latest-repos">Latest Repos</h2>
+        <!-- 이 밑에부터 js로 create 해보기 -->
+        <div class="repo-list" id="repo-list">
+
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

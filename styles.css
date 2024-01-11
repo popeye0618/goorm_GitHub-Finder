@@ -1,0 +1,182 @@
+:root{
+    --title-theme-text-color: #343A40
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.title-bar {
+    background-color: #4582EB;
+    color: white;
+    padding: 10px;
+}
+.search-container {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 13px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: fisrt baseline;
+}
+.search-container h2 {
+    font-weight: bold;
+    color: var(--title-theme-text-color);
+    margin-bottom: 4px;
+}
+.search-container span {
+    color: #899199;
+    margin-bottom: 6px;
+}
+.search-container input {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    height: 30px;
+    padding-left: 10px;
+}
+.search-container input:focus {
+    outline: 1px solid grey;
+}
+
+.profile-container {
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    padding: 20px;
+    justify-content: baseline;
+}
+.img-container {
+    border: none;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+}
+.img-container img {
+    width: 200px;
+    height: 250px;
+}
+.view-profile {
+    margin-top: 10px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    background-color: #4582EB;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+.sub-profile-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-self: stretch;
+}
+.status {
+    display: flex;
+    justify-content: baseline;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+.small-container {
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px 4px 8px;
+    text-align: center;
+    color: white;
+    font-size: 13px;
+}
+.public-repos {
+    background-color: #4582EB;
+}
+.public-gists {
+    background-color: #ACB5BD;
+}
+.followers {
+    background-color: #01B974;
+}
+.following {
+    background-color: #1AA1B8;
+}
+
+.sub-profile-container ul {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    list-style-type: none;
+    padding: 0;
+    height: 69%;
+    
+}
+.sub-profile-container li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    padding: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+    font-size: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+}
+.sub-profile-container li:last-child{
+    border-bottom: none;
+}
+
+.latest-repos {
+    display: none;
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: var(--title-theme-text-color);
+}
+
+.repo-list {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.repo-card {
+    margin-bottom: 15px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    padding: 10px;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.repo-name {
+    flex: 2;
+    font-size: 17px;
+    color: #4582EB;
+    margin-left: 10px;
+}
+.repo-status {
+    display: flex;
+    gap: 5px;
+    flex: 1;
+    margin-right: 10rem;
+}
+.repo-stars {
+    background-color: #4582EB;
+
+}
+.repo-watchers {
+    background-color: #ACB5BD;
+}
+.repo-forks {
+    background-color: #01B974;
+    margin-right: 20px;
+}
